@@ -1,0 +1,4 @@
+#ZooKeeper
+dubbo:
+  registry:
+    address: 192.168.70.80:2181
