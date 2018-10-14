@@ -1,5 +1,5 @@
 dubbo:
   registry:
-    address: 192.168.70.80:2181
+    address: 192.168.70.128:2181
 server:
   port: 9999

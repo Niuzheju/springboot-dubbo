@@ -7,11 +7,22 @@
        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
     <!-- 消费方应用名 -->
     <dubbo:application name="consumer"/>
-    <!-- 注册中心服务地址 -->
-    <dubbo:registry id="zookeeper" protocol="zookeeper" address="${dubbo.registry.address}"/>
+    <!--
+        注册中心服务地址
+        通过protocol指定协议后, address只需要指定服务地址:端口
+        如果不使用protocol指定协议, addresss需指定完整地址,协议://地址:端口
+     -->
+    <dubbo:registry id="zookeeper" protocol="zookeeper" address="${dubbo.registry.address}" timeout="3000"/>
     <!--
         引用接口时,version, group, 接口名三者必须保持一致
         check:系统启动是是否检查接口提供方的状态
+        id必须存在
+        可设置属性覆盖provider提供的接口的属性,如timeout
+        url属性设置直连provider的地址(指定调用)
     -->
-    <dubbo:reference id="userService" interface="com.niuzj.user.UserService" check="false" registry="zookeeper" protocol="dubbo" timeout="1000"/>
+    <!--<dubbo:reference id="userService2" interface="com.niuzj.user.UserService" version="1.2" group="2" retries="2" check="false"  timeout="1000" url="dubbo://localhost:30001"/>
+    <dubbo:reference id="userService" interface="com.niuzj.user.UserService" version="1.1" group="1" retries="2" check="false"  timeout="1000" url="dubbo://localhost:30001"/>-->
+
+    <dubbo:reference id="userService2" interface="com.niuzj.user.UserService" version="1.2" group="2" retries="2" check="false"  timeout="1000"/>
+    <dubbo:reference id="userService" interface="com.niuzj.user.UserService" version="1.1" group="1" retries="2" check="false"  timeout="1000"/>
 </beans>

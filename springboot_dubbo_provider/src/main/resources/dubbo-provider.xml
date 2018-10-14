@@ -2,11 +2,23 @@
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">     <!-- 提供方应用信息，用于计算依赖关系 -->
-    <dubbo:application name="test"/>
+    <!--指定应用名, 用于计算依赖关系-->
+    <dubbo:application name="provider"/>
     <!-- 注册中心服务地址 -->
+    <!--
+        register="false", 只订阅
+     -->
     <dubbo:registry id="zookeeper" protocol="zookeeper" address="${dubbo.registry.address}"/>
     <!-- 用dubbo协议在30001 -->
     <dubbo:protocol name="dubbo" port="30001"/>
     <!-- 声明需要暴露的服务接口 -->
-    <dubbo:service interface="com.niuzj.user.UserService" ref="userService" registry="zookeeper"/>
+    <!--
+        dubbo:service设置的属性是为消费者使用
+        注册中心可以更改这些设置
+        消费者也可以更改这些设置,dubbo:reference中设置
+        提供者  注册中心  消费者 三者为继承关系, 不过不更改配置则使用上层的配置(配置继承)
+    -->
+    <dubbo:service interface="com.niuzj.user.UserService" ref="userService2" version="1.2" group="2" timeout="3000" retries="3"/>
+    <dubbo:service interface="com.niuzj.user.UserService" version="1.1" group="1" ref="userService" timeout="3000" retries="3"/>
+
 </beans>

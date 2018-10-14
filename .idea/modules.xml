@@ -2,7 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/api/common-api.iml" filepath="$PROJECT_DIR$/api/common-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot_dubbo_provider/provider.iml" filepath="$PROJECT_DIR$/springboot_dubbo_provider/provider.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/springboot-dubbo.iml" filepath="$PROJECT_DIR$/.idea/springboot-dubbo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/springboot-dubbo-consumer/springboot-dubbo-consumer.iml" filepath="$PROJECT_DIR$/springboot-dubbo-consumer/springboot-dubbo-consumer.iml" />
     </modules>
   </component>
 </project>
