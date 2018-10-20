@@ -23,6 +23,6 @@
     <!--<dubbo:reference id="userService2" interface="com.niuzj.user.UserService" version="1.2" group="2" retries="2" check="false"  timeout="1000" url="dubbo://localhost:30001"/>
     <dubbo:reference id="userService" interface="com.niuzj.user.UserService" version="1.1" group="1" retries="2" check="false"  timeout="1000" url="dubbo://localhost:30001"/>-->
 
-    <dubbo:reference id="userService2" interface="com.niuzj.user.UserService" version="1.2" group="2" retries="2" check="false"  timeout="1000"/>
-    <dubbo:reference id="userService" interface="com.niuzj.user.UserService" version="1.1" group="1" retries="2" check="false"  timeout="1000"/>
+    <dubbo:reference id="userService2" interface="com.niuzj.user.UserService" version="1.2" group="2" retries="2" check="false"  timeout="1000" cluster="${dubbo.cluster}" loadbalance="random"/>
+    <dubbo:reference id="userService" interface="com.niuzj.user.UserService" version="1.1" group="1" retries="2" check="false"  timeout="1000" cluster="${dubbo.cluster}" />
 </beans>

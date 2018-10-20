@@ -2,3 +2,6 @@
 dubbo:
   registry:
     address: 192.168.70.128:2181
+  port: 20880
+server:
+  port: 8080

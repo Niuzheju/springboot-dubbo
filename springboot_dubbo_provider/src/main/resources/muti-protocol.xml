@@ -11,14 +11,12 @@
     <dubbo:registry id="zookeeper" protocol="zookeeper" address="${dubbo.registry.address}" timeout="3000"/>
     <!-- 用dubbo协议在30001 -->
     <dubbo:protocol name="dubbo" port="${dubbo.port}"/>
-    <!-- 声明需要暴露的服务接口 -->
-    <!--
-        dubbo:service设置的属性是为消费者使用
-        注册中心可以更改这些设置
-        消费者也可以更改这些设置,dubbo:reference中设置
-        提供者  注册中心  消费者 三者为继承关系, 不过不更改配置则使用上层的配置(配置继承)
-    -->
-    <dubbo:service interface="com.niuzj.user.UserService" ref="userService2" version="1.2" group="2" timeout="3000" retries="3"/>
-    <dubbo:service interface="com.niuzj.user.UserService" version="1.1" group="1" ref="userService" timeout="3000" retries="3"/>
+    <dubbo:protocol id="dubbo1" name="dubbo" port="20880"/>
+    <dubbo:protocol id="dubbo2" name="dubbo" port="20889"/>
+    <dubbo:protocol name="hessian" port="20881"/>
+    <dubbo:protocol name="http" port="20882"/>
+    <dubbo:protocol name="rmi" port="20883" codec="spring"/>
+    <dubbo:service interface="com.niuzj.user.UserService" ref="userService2" protocol="dubbo,rmi"/>
+    <dubbo:service interface="com.niuzj.user.UserService" ref="userService" protocol="rmi"/>
 
 </beans>
