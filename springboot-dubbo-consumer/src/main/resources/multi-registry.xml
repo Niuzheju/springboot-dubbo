@@ -8,10 +8,9 @@
     <!-- 消费方应用名 -->
     <dubbo:application name="consumer"/>
 
-    <dubbo:consumer injvm="true"/>
+    <dubbo:registry id="zookeeper" protocol="zookeeper" address="192.168.70.128:2181" timeout="3000"/>
+    <dubbo:registry id="multi" protocol="multicast" address="224.0.0.1:2258" timeout="3000"/>
 
-    <dubbo:registry id="zookeeper" protocol="zookeeper" address="${dubbo.registry.address}" timeout="3000"/>
-
-    <dubbo:reference id="userService2" interface="com.niuzj.user.UserService" injvm="true" check="false"  protocol="injvm"/>
-    <dubbo:reference id="userService" interface="com.niuzj.user.UserService" injvm="true" check="false" protocol="injvm"/>
+    <dubbo:reference id="userService" interface="com.niuzj.user.UserService" check="false" registry="zookeeper"/>
+    <dubbo:reference id="userService2" interface="com.niuzj.user.UserService" check="false" registry="multi"/>
 </beans>
