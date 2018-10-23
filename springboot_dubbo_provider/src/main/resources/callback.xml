@@ -16,6 +16,6 @@
             <dubbo:argument index="0" callback="true"/>
         </dubbo:method>
     </dubbo:service>
-    <dubbo:service interface="com.niuzj.user.UserService" ref="userService2"/>
+    <!--<dubbo:service interface="com.niuzj.user.UserService" ref="userService2"/>-->
 
 </beans>
