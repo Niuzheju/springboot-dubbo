@@ -20,15 +20,15 @@ import java.util.Map;
 @RequestMapping("/test")
 public class TestController {
 
-//    @Resource(name = "userService")
-//    private UserService userService;
+    @Resource(name = "userService")
+    private UserService userService;
 
-//    @Resource(name = "userService2")
-//    private UserService userService2;
+    @Resource(name = "userService2")
+    private UserService userService2;
 
-    @Autowired
-    @Qualifier("userService")
-    private GenericService genericService1;
+//    @Autowired
+//    @Qualifier("userService")
+//    private GenericService genericService1;
 
 //    @RequestMapping("/getUsername")
 //    public String getUsername(){
@@ -42,16 +42,26 @@ public class TestController {
 
     /**
      * 测试泛化调用
+     * xml:generic-invoke.xml
      */
-    @RequestMapping("/getUsername3")
-    public String getUsername3() {
-        Object result = genericService1.$invoke("getUsername", null, null);
+//    @RequestMapping("/getUsername3")
+//    public String getUsername3() {
+//        Object result = genericService1.$invoke("getUsername", null, null);
         //实体类传参实例
 //        Map<String, Object> map = new HashMap<>();
 //        map.put("name", "nzj");
 //        map.put("age", 22);
 //        Object obj = genericService1.$invoke("updateUser", new String[]{"java.util.Map"}, new Object[]{map});
-        return result.toString();
+//        return result.toString();
+//    }
+
+    /**
+     * 测试参数回调
+     * xml:normal.xml
+     */
+    @RequestMapping("/getUsername4")
+    public String getUsername4(){
+       return userService.getUsername(() -> "xxx");
     }
 
 }

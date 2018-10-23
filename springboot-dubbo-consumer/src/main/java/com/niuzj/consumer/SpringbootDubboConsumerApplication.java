@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
-@ImportResource("classpath:generic-invoke.xml")
+@ImportResource("classpath:normal.xml")
 public class SpringbootDubboConsumerApplication {
 
     public static void main(String[] args) {

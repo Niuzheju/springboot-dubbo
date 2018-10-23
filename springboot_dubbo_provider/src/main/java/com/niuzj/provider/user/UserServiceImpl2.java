@@ -1,5 +1,6 @@
 package com.niuzj.provider.user;
 
+import com.niuzj.common.CallBackListener;
 import com.niuzj.user.UserService;
 import org.springframework.stereotype.Service;
 
@@ -13,5 +14,10 @@ public class UserServiceImpl2 implements UserService {
     @Override
     public String getUsername() {
         return "Zhangyuqiao";
+    }
+
+    @Override
+    public String getUsername(CallBackListener listener) {
+        return "Zhangyuqiao" + listener.newName();
     }
 }
