@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
-@ImportResource("classpath:group-merged.xml")
+@ImportResource("classpath:parameter-validation.xml")
 public class ProviderApplication {
 
     public static void main(String[] args) {
