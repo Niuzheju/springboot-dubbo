@@ -2,6 +2,7 @@ package com.niuzj.consumer.controller;
 
 import com.alibaba.dubbo.rpc.RpcContext;
 import com.alibaba.dubbo.rpc.service.GenericService;
+import com.niuzj.user.IGroupMergedService;
 import com.niuzj.user.UserService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -122,5 +123,7 @@ public class TestController {
     public String getUsername7(){
         return userService.getNewName("罗辑");
     }
+
+
 
 }

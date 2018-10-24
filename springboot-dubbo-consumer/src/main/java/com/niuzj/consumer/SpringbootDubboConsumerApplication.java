@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ImportResource;
 
 @SpringBootApplication
-@ImportResource("classpath:event-notify.xml")
+@ImportResource({"classpath:group-merged.xml", "classpath:normal.xml"})
 public class SpringbootDubboConsumerApplication {
 
     public static void main(String[] args) {

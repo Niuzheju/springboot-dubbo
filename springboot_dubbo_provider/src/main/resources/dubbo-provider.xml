@@ -7,6 +7,7 @@
     <!-- 注册中心服务地址 -->
     <!--
         register="false", 只订阅
+        subscribe="false", 只注册
      -->
     <dubbo:registry id="zookeeper" protocol="zookeeper" address="${dubbo.registry.address}" timeout="3000"/>
     <!-- 用dubbo协议在30001 -->

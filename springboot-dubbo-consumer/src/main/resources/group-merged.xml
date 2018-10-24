@@ -4,13 +4,14 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://code.alibabatech.com/schema/dubbo
-       http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
-    <!-- 消费方应用名 -->
-    <dubbo:application name="consumer"/>
+       http://code.alibabatech.com/schema/dubbo/dubbo.xsd" default-lazy-init="true">
 
     <dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}" timeout="3000"/>
 
-    <!--泛化调用-->
-    <dubbo:reference id="userService" interface="com.niuzj.user.UserService" check="false" generic="true"/>
-    <dubbo:reference id="userService2" interface="com.niuzj.user.UserService" check="false" generic="true"/>
+    <!--分组聚合-->
+    <dubbo:reference id="groupMergedService" interface="com.niuzj.user.IGroupMergedService" check="false" group="old,new" merger="true">
+       <!-- <dubbo:method name="groupArray" merger="true"/>
+        <dubbo:method name="groupList" merger="true"/>
+        <dubbo:method name="groupMap" merger="true"/>-->
+    </dubbo:reference>
 </beans>

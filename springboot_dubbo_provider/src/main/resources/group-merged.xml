@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://code.alibabatech.com/schema/dubbo
        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
-    <!-- 消费方应用名 -->
-    <dubbo:application name="consumer"/>
+    <dubbo:application name="provider" />
 
     <dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}" timeout="3000"/>
 
-    <!--泛化调用-->
-    <dubbo:reference id="userService" interface="com.niuzj.user.UserService" check="false" generic="true"/>
-    <dubbo:reference id="userService2" interface="com.niuzj.user.UserService" check="false" generic="true"/>
+    <!--分组聚合接口-->
+    <dubbo:service interface="com.niuzj.user.IGroupMergedService" ref="groupMergedService" group="new"/>
+    <dubbo:service interface="com.niuzj.user.IGroupMergedService" ref="groupMergedService2" group="old"/>
+
+
 </beans>

@@ -8,7 +8,7 @@
     <!-- 消费方应用名 -->
     <dubbo:application name="consumer"/>
 
-    <dubbo:registry protocol="zookeeper" address="192.168.70.128:2181" timeout="3000"/>
+    <dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}" timeout="3000"/>
 
     <dubbo:reference id="userService" interface="com.niuzj.user.UserService" check="false"/>
     <dubbo:reference id="userService2" interface="com.niuzj.user.UserService" check="false"/>
