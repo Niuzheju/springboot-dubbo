@@ -10,9 +10,11 @@
 
     <dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}" timeout="3000"/>
 
-    <!--异步调用-->
-    <dubbo:reference id="userService" interface="com.niuzj.user.UserService" check="false" async="true"/>
-    <dubbo:reference id="userService2" interface="com.niuzj.user.UserService" check="false">
-        <dubbo:method name="getUsername" async="true"/>
+    <bean class="com.niuzj.consumer.eventnotify.impl.NotifyServiceImpl" id="notifyService"/>
+
+    <dubbo:reference id="userService" interface="com.niuzj.user.UserService" check="false">
+       <!-- 事件通知-->
+        <dubbo:method name="getNewName" oninvoke="notifyService.onInvoke" onreturn="notifyService.onReturn" onthrow="notifyService.onThrow"/>
     </dubbo:reference>
+    <dubbo:reference id="userService2" interface="com.niuzj.user.UserService" check="false"/>
 </beans>

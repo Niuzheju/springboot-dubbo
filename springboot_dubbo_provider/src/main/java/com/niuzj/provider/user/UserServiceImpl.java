@@ -17,4 +17,10 @@ public class UserServiceImpl implements UserService {
         return "niuzheju" + listener.newName();
     }
 
+    @Override
+    public String getNewName(String username) {
+//        int i = 10 / 0;
+        return username + "_dubbo";
+    }
+
 }

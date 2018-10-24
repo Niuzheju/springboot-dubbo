@@ -20,4 +20,9 @@ public class UserServiceImpl2 implements UserService {
     public String getUsername(CallBackListener listener) {
         return "Zhangyuqiao" + listener.newName();
     }
+
+    @Override
+    public String getNewName(String username) {
+        return username + "_dubbox";
+    }
 }

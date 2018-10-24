@@ -114,4 +114,13 @@ public class TestController {
         return username1 + username2;
     }
 
+    /**
+     * 测试事件通知
+     * xml:event-notify.xml
+     */
+    @RequestMapping("/getUsername7")
+    public String getUsername7(){
+        return userService.getNewName("罗辑");
+    }
+
 }

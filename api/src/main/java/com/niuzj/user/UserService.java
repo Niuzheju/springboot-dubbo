@@ -6,4 +6,6 @@ public interface UserService {
     String getUsername();
 
     String getUsername(CallBackListener listener);
+
+    String getNewName(String username);
 }

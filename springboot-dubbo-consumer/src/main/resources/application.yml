@@ -1,6 +1,6 @@
 dubbo:
   registry:
-    address: 192.168.70.128:2181
-  cluster: forking
+    address: 192.168.70.80:2181
+#  cluster: forking
 server:
   port: 9999
