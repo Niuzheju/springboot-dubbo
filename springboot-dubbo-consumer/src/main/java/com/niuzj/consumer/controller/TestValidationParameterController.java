@@ -28,18 +28,21 @@ public class TestValidationParameterController {
         ValidationParameter parameter = new ValidationParameter();
         parameter.setAge(0);
         parameter.setName("云天明");
-        parameter.setEmail("2549218666");
+        parameter.setEmail(null);
         parameter.setExpiryDate(new Date());
         parameter.setLoginDate(new Date());
         //校验参数
         try {
-            validationService.save(parameter);
-        } catch (RpcException e) {
-            ConstraintViolationException exception = (ConstraintViolationException) e.getCause();
-            Set<ConstraintViolation<?>> violations = exception.getConstraintViolations();
-            System.out.println(violations);
+//            validationService.save(parameter);
+//            validationService.udpate(parameter);
+            validationService.delete(0);
+        } catch (Exception e) {
+            if (e instanceof ConstraintViolationException){
+                ConstraintViolationException exception = (ConstraintViolationException) e;
+                Set<ConstraintViolation<?>> violations = exception.getConstraintViolations();
+                System.out.println(violations);
+            }
+            e.printStackTrace();
         }
-
-
     }
 }

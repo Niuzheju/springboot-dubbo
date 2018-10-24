@@ -10,7 +10,7 @@
 
     <dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}" timeout="3000"/>
 
-    <!--分组聚合接口-->
+    <!--参数验证-->
     <dubbo:service interface="com.niuzj.user.IValidationService" ref="validationService" validation="true"/>
 
 

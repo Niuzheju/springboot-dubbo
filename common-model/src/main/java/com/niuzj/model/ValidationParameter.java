@@ -16,7 +16,7 @@ public class ValidationParameter implements Serializable {
     private String name;
 
     //满足邮箱格式, 更新时邮箱非空
-    @NotNull(groups = IValidationService.Save.class)
+    @NotNull(groups = IValidationService.Update.class)
     @Pattern(regexp = "^\\\\s*\\\\w+(?:\\\\.{0,1}[\\\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\\\.[a-zA-Z]+\\\\s*$")
     private String email;
 
