@@ -2,7 +2,9 @@ package com.niuzj.consumer.controller;
 
 import com.alibaba.dubbo.rpc.RpcContext;
 import com.alibaba.dubbo.rpc.service.GenericService;
+import com.niuzj.model.User;
 import com.niuzj.user.IGroupMergedService;
+import com.niuzj.user.IOrderService;
 import com.niuzj.user.UserService;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,9 @@ public class TestController {
 
     @Resource(name = "userService2")
     private UserService userService2;
+
+    @Autowired
+    private IOrderService orderService;
 
 //    @Autowired
 //    @Qualifier("userService")
@@ -122,6 +127,14 @@ public class TestController {
     @RequestMapping("/getUsername7")
     public String getUsername7(){
         return userService.getNewName("罗辑");
+    }
+
+    @RequestMapping("getUsername8")
+    public String getUsername8(){
+        User user = new User();
+        user.setUsername("曲率驱动飞船");
+        user.setAge(-1);
+        return orderService.getOrderId(user).toString();
     }
 
 
