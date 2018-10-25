@@ -9,6 +9,6 @@
     <dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}" timeout="3000"/>
 
     <!--参数验证-->
-    <dubbo:reference id="validationService" interface="com.niuzj.user.IValidationService" validation="true"/>
+    <dubbo:reference id="validationService" interface="com.niuzj.user.IValidationService" validation="true" check="false"/>
 
 </beans>

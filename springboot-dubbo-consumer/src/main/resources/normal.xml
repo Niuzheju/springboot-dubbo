@@ -12,4 +12,5 @@
 
     <dubbo:reference id="userService" interface="com.niuzj.user.UserService" check="false"/>
     <dubbo:reference id="userService2" interface="com.niuzj.user.UserService" check="false"/>
+    <dubbo:reference id="orderService" interface="com.niuzj.user.IOrderService" check="false"/>
 </beans>
