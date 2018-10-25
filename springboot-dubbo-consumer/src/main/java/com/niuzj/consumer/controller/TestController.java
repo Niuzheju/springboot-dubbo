@@ -40,15 +40,15 @@ public class TestController {
 //    @Qualifier("userService")
 //    private GenericService genericService1;
 
-//    @RequestMapping("/getUsername")
-//    public String getUsername(){
-//        return userService.getUsername();
-//    }
+    @RequestMapping("/getUsername")
+    public String getUsername(){
+        return userService.getUsername();
+    }
 
-//    @RequestMapping("/getUsername2")
-//    public String getUsername2(){
-//        return userService2.getUsername();
-//    }
+    @RequestMapping("/getUsername2")
+    public String getUsername2(){
+        return userService2.getUsername();
+    }
 
     /**
      * 测试泛化调用
@@ -129,6 +129,10 @@ public class TestController {
         return userService.getNewName("罗辑");
     }
 
+    /**
+     * 测试泛化实现
+     * xml:normal.xml
+     */
     @RequestMapping("getUsername8")
     public String getUsername8(){
         User user = new User();
@@ -137,6 +141,21 @@ public class TestController {
         return orderService.getOrderId(user).toString();
     }
 
+    /**
+     * 测试隐式传参
+     */
+    @RequestMapping("/getUsername9")
+    public String getUsername9(){
+        //调用接口之前通过RpcContext设置参数
+        RpcContext context = RpcContext.getContext();
+        context.setAttachment("info", "rpc参数");
+        Map<String, String> map = new HashMap<>();
+        context.setAttachments(map);
+        String username = userService.getUsername();
+        String xxx = userService.getNewName("xxx");
+        //当发起一次新的接口调用时, 上次设置的参数将不存在, 所以服务端要想获取到参数必须先获取参数再进行新的rpc调用
+        return username;
+    }
 
 
 }
