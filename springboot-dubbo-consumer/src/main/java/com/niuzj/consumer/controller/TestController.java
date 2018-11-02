@@ -3,6 +3,7 @@ package com.niuzj.consumer.controller;
 import com.alibaba.dubbo.rpc.RpcContext;
 import com.alibaba.dubbo.rpc.service.GenericService;
 import com.niuzj.model.User;
+import com.niuzj.user.ICacheService;
 import com.niuzj.user.IGroupMergedService;
 import com.niuzj.user.IOrderService;
 import com.niuzj.user.UserService;
@@ -30,25 +31,28 @@ public class TestController {
     @Resource(name = "userService")
     private UserService userService;
 
-    @Resource(name = "userService2")
-    private UserService userService2;
+//    @Resource(name = "userService2")
+//    private UserService userService2;
 
     @Autowired
     private IOrderService orderService;
+
+    @Autowired
+    private ICacheService cacheService;
 
 //    @Autowired
 //    @Qualifier("userService")
 //    private GenericService genericService1;
 
     @RequestMapping("/getUsername")
-    public String getUsername(){
+    public String getUsername() {
         return userService.getUsername();
     }
 
-    @RequestMapping("/getUsername2")
-    public String getUsername2(){
-        return userService2.getUsername();
-    }
+//    @RequestMapping("/getUsername2")
+//    public String getUsername2(){
+//        return userService2.getUsername();
+//    }
 
     /**
      * 测试泛化调用
@@ -125,7 +129,7 @@ public class TestController {
      * xml:event-notify.xml
      */
     @RequestMapping("/getUsername7")
-    public String getUsername7(){
+    public String getUsername7() {
         return userService.getNewName("罗辑");
     }
 
@@ -134,7 +138,7 @@ public class TestController {
      * xml:normal.xml
      */
     @RequestMapping("getUsername8")
-    public String getUsername8(){
+    public String getUsername8() {
         User user = new User();
         user.setUsername("曲率驱动飞船");
         user.setAge(-1);
@@ -145,7 +149,7 @@ public class TestController {
      * 测试隐式传参
      */
     @RequestMapping("/getUsername9")
-    public String getUsername9(){
+    public String getUsername9() {
         //调用接口之前通过RpcContext设置参数
         RpcContext context = RpcContext.getContext();
         context.setAttachment("info", "rpc参数");
@@ -155,6 +159,34 @@ public class TestController {
         String xxx = userService.getNewName("xxx");
         //当发起一次新的接口调用时, 上次设置的参数将不存在, 所以服务端要想获取到参数必须先获取参数再进行新的rpc调用
         return username;
+    }
+
+    @RequestMapping("/getUsername10")
+    public String getUsername10() {
+        String s = "";
+        try {
+            orderService.getOrderId(new User());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return s;
+    }
+
+    @RequestMapping("getUsername11")
+    public String getUsername11() {
+
+        String fix = null;
+        for (int i = 0; i < 5; i++) {
+            String result = cacheService.findCache(1);
+            if (fix == null || fix.equals(result)) {
+                System.out.println(i + " ok result, " + result);
+            } else {
+                System.out.println(i + " error result, " + result);
+            }
+            fix = result;
+        }
+
+        return "";
     }
 
 

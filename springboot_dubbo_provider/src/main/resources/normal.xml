@@ -3,10 +3,16 @@
        xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd       http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">     <!-- 提供方应用信息，用于计算依赖关系 -->
 
+    <!--线程池配置-->
+    <!--<dubbo:provider timeout="5000" threadpool="fixed" threads="500" accepts="600" dispatcher="message"/>-->
+    <dubbo:protocol threadpool="fixed" threads="500" accepts="600" dispatcher="message"/>
+
     <dubbo:registry id="zookeeper" protocol="zookeeper" address="${dubbo.registry.address}" timeout="3000"/>
     <!-- 用dubbo协议在30001 -->
-    <dubbo:protocol name="dubbo" port="${dubbo.port}"/>
-    <dubbo:service interface="com.niuzj.user.UserService" ref="userService"/>
-    <dubbo:service interface="com.niuzj.user.UserService" ref="userService2" />
+    <dubbo:protocol name="dubbo" port="${dubbo.port}" accesslog="true"/>
+    <!--delay: 延迟暴露服务-->
+    <dubbo:service interface="com.niuzj.user.UserService" delay="-1" ref="userService"/>
+
+    <dubbo:service interface="com.niuzj.user.ICacheService" ref="cacheService"/>
 
 </beans>

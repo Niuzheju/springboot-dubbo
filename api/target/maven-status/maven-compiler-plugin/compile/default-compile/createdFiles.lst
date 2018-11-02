@@ -1,2 +1,6 @@
 com\niuzj\common\CallBackListener.class
+com\niuzj\user\IValidationService$Save.class
+com\niuzj\user\IGroupMergedService.class
 com\niuzj\user\UserService.class
+com\niuzj\user\IValidationService.class
+com\niuzj\user\IValidationService$Update.class

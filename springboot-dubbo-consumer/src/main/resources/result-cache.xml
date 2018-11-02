@@ -5,12 +5,8 @@
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://code.alibabatech.com/schema/dubbo
        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
-    <!-- 消费方应用名 -->
-    <dubbo:application name="consumer"/>
 
     <dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}" timeout="3000"/>
 
-    <dubbo:reference id="userService" interface="com.niuzj.user.UserService" mock="true" check="false"/>
-    <!--<dubbo:reference id="userService2" interface="com.niuzj.user.UserService" mock="return null" check="false"/>-->
-    <dubbo:reference id="orderService" interface="com.niuzj.user.IOrderService" mock="true" check="false"/>
+    <dubbo:reference id="cacheService" interface="com.niuzj.user.ICacheService" cache="lru"  check="false"/>
 </beans>
