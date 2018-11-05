@@ -6,9 +6,7 @@
        http://code.alibabatech.com/schema/dubbo
        http://code.alibabatech.com/schema/dubbo/dubbo.xsd" default-lazy-init="true">
 
-    <dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}" timeout="3000"/>
-
     <!--参数验证-->
-    <dubbo:reference id="validationService" interface="com.niuzj.user.IValidationService" validation="true" check="false"/>
+    <dubbo:reference id="validationService" interface="com.niuzj.user.IValidationService" validation="true" check="false" registry="z1"/>
 
 </beans>

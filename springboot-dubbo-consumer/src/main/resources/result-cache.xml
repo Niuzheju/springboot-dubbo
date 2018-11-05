@@ -6,7 +6,6 @@
        http://code.alibabatech.com/schema/dubbo
        http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
 
-    <dubbo:registry protocol="zookeeper" address="${dubbo.registry.address}" timeout="3000"/>
 
-    <dubbo:reference id="cacheService" interface="com.niuzj.user.ICacheService" cache="lru"  check="false"/>
+    <dubbo:reference id="cacheService" interface="com.niuzj.user.ICacheService" cache="lru"  check="false" registry="z1"/>
 </beans>

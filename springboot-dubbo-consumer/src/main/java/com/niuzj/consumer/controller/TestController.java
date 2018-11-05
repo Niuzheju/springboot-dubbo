@@ -165,7 +165,7 @@ public class TestController {
     public String getUsername10() {
         String s = "";
         try {
-            orderService.getOrderId(new User());
+            s = orderService.getOrderId(new User()).toString();
         } catch (Exception e) {
             e.printStackTrace();
         }
